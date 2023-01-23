@@ -2,14 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 
 def scrape_data():
-    response = requests.get("https://999.md/ru/list/phone-and-communication/mobile-phones")
+    response = requests.get("https://999.md/ru/category/clothes-and-shoes")
     soup = BeautifulSoup(response.text, "html.parser")
     new_articles = soup.find_all("li", class_="ads-list-photo-item")
     phones = []
     for article in new_articles:
         try:
             if article != None:
-                title = article.find("div", class_="ads-list-photo-item-title").text
+                title = article.find("div", class_="ads-list-photo-item-thumb").text
                 image = article.find("img")["src"]
                 link = article.find("a")["href"]
                 print(title)
